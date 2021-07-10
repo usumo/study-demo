@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script src="js/crypto-js.js"></script>
+    <script src="js/encry.js"></script>
+    <script>
+        var d = 'type=1';
+        var e = '01001';
+        var f = '123456';
+        var g = '123456';
+        var result = window.asrsea(d, e, f, g);
+
+        console.log(result);
+    </script> -->
+    <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
+    <script>
+        // 使用函数名 filterXSS，用法一样
+        var html = filterXSS('<script>alert("xss");</scr' + 'ipt>');
+        console.log(html);
+    </script>
+</body>
+
+</html>

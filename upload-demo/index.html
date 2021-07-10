@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试上传</title>
+  <style>
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+    }
+
+    /* Separate rule for compatibility, :focus-within is required on modern Firefox and Chrome */
+    input.visually-hidden:focus+label {
+      outline: thin dotted;
+    }
+
+    input.visually-hidden:focus-within+label {
+      outline: thin dotted;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="file" id="fileElem" multiple accept="image/*" class="visually-hidden" onchange="showPreview(this)">
+  <label for="fileElem">点击上传</label>
+  <img id="portrait" src="" width="70" height="75">
+
+  <script type="text/javascript">
+  	function demo() {
+  		console.log('1234')
+  	}
+  	setInterval(demo, 1000);
+    function showPreview(source) {
+      console.log(source);
+      var file = source.files[0];
+      console.log(file.name);
+      console.log(file.type);
+      console.log(file.size);
+      if (window.FileReader) {
+        var fr = new FileReader();
+        fr.onloadend = function(e) {
+          document.getElementById("portrait").src = window.URL.createObjectURL(file);
+          console.log(e);
+        };
+        fr.onprogress = function(e) {
+          console.log(e);
+        };
+        fr.readAsDataURL(file);
+      } else {
+        alert("Not supported by your browser!");
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #canvas {
+      border: 1px solid #bbb;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="400" height="600">您的浏览器不支持 HTML5 canvas 标签。</canvas>
+  <script>
+    window.onload = function () {
+      var y = -100;
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = "#bbb";
+      ctx.fillRect(0, 0, 400, 600);
+
+      //画圆
+      function createBall() {
+        ctx.beginPath();
+        ctx.fillStyle = 'blue';
+        ctx.arc(200, y, 50, 0, 2 * Math.PI);
+        ctx.fill();
+      }
+
+      function update() {
+        ctx.clearRect(0, 0, 400, 600);
+        if (y < 700) {
+          y = y + 1;
+          createBall();
+        } else {
+          y = -100;
+        }
+        requestAnimationFrame(update);
+        console.log(y);
+      }
+      update();
+    }
+  </script>
+</body>
+
+</html>

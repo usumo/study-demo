@@ -1,0 +1,11 @@
+node_modules*
+npm-debug.log
+.vscode
+.project
+**/.DS_Store
+.sass-cache
+dist
+mime.types
+package-lock.json
+
+yarn.lock

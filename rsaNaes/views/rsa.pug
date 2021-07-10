@@ -1,0 +1,35 @@
+p 加密后公钥：
+input#J_PublicKey(
+    type="text"
+    value=pk
+    readonly
+    )
+div 加密前数据：
+input(id="J_Msg" type="text")
+div
+    button(id="J_EncryptBtn" type="button") 客户端加密
+    button(id="J_DecryptBtn" type="button") 服务端解密
+hr
+p 加密后数据：
+div(id="J_EncryptedMsg" class="encrypted-msg")
+p 解密后后数据：
+div(id="J_DecryptedMsg" class="decrypted-msg")
+
+link(rel="stylesheet", href="/test/rsa/rsa.css")
+
+script(src="/jquery/dist/jquery.js")
+
+//- AES
+script(src="/test/rsa/crypto/core.js")
+script(src="/test/rsa/crypto/enc-base64.js")
+script(src="/test/rsa/crypto/md5.js")
+script(src="/test/rsa/crypto/evpkdf.js")
+script(src="/test/rsa/crypto/cipher-core.js")
+script(src="/test/rsa/crypto/aes.js")
+//- AES: SHA256
+script(src="/test/rsa/crypto/sha256.js")
+
+//- RSA
+script(src="/test/rsa/jsencrypt.js")
+
+script(src="/test/rsa/rsa.js")

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise</title>
+</head>
+
+<body>
+  <script>
+    function test(res) {
+      return Promise.resolve(res)
+        .then(res => {
+          console.log(res += '!');
+          return res;
+        })
+        .then(res => {
+          console.log(res += '!');
+          return res;
+        })
+        .catch(res => {
+          console.log(res += '!'); // 此处不会执行，promise没有返回reject
+          return res;
+        })
+        .then(res => {
+          console.log(res += '!'); // 此处是上一个then返回的，会执行
+        })
+    }
+    test('hello');
+  </script>
+</body>
+
+</html>

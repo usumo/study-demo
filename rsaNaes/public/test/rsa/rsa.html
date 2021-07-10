@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基于RSA实现的客户端数据加密，服务端数据解密</title>
+
+    <style>
+        body {
+            margin: 20% 30%;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .encrypted-msg {
+            word-break: break-all;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea name="" id="J_PublicKey" cols="30" rows="10" hidden>
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC8asrfSaoOb4je+DSmKdriQJKW
+VJ2oDZrs3wi5W67m3LwTB9QVR+cE3XWU21Nx+YBxS0yun8wDcjgQvYt625ZCcgin
+2ro/eOkNyUOTBIbuj9CvMnhUYiR61lC1f1IGbrSYYimqBVSjpifVufxtx/I3exRe
+ZosTByYp4Xwpb1+WAQIDAQAB
+-----END PUBLIC KEY-----
+    </textarea>
+    <div>
+        加密前数据：<input id="J_Msg" type="text">
+    </div>
+    <div>
+        <button id="J_EncryptBtn" type="button">客户端加密</button>
+        <button id="J_DecryptBtn" type="button">服务端解密</button>
+    </div>
+    <hr>
+    <p>加密后数据：</p>
+    <div id="J_EncryptedMsg" class="encrypted-msg"></div>
+    <p>解密后后数据：</p>
+    <div id="J_DecryptedMsg" class="decrypted-msg"></div>
+
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="./jsencrypt.js"></script>
+    <script src="./rsa.js"></script>
+</body>
+
+</html>

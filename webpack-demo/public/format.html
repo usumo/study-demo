@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="order-dialog">
+    <div class="order-dialog-nav">
+      <ul>
+        <li class="current">彩铃订购</li>
+        <li>振铃订购</li>
+      </ul>
+    </div>
+    <div class="order-dialog-header">
+      <div class="order-dialog-header-thumbnail">
+        <div class="order-dialog-header-thumbnail-wrapper"><img
+            src="https://cdnmusic.migu.cn/picture/2021/0329/1311/AMcbc1ef102078f82f41a28f01d7e1b374.jpg" alt="数字专辑"
+            onerror="" class="img-block"></div>
+      </div>
+      <div class="order-dialog-header-content">
+        <p class="order-dialog-header-content-title">十一月的肖邦</p>
+        <p class="order-dialog-header-content-desc">周杰伦</p>
+        <p class="order-dialog-header-content-desc">有效期：2021-03-04</p>
+        <p class="order-dialog-header-content-price">单价：<span>￥</span><span>20</span>元/张</p>
+      </div>
+    </div>
+    <div class="order-dialog-content">
+      <div class="order-dialog-content-desc">
+        <p class="order-desc-title">业务说明：</p>
+        <p>1、彩铃订购仅支持中国移动手机号码 </p>
+        <p>2、订购彩铃需首先开通彩铃功能 </p>
+        <p>3、开通彩铃包月功能后，享免费无限量订购彩铃，还可DIY彩铃 </p>
+        <p>4、赠送他人需双方开通彩铃功能，且为中国移动手机号码</p>
+      </div>
+      <div class="order-dialog-content-item">
+        <div class="order-dialog-content-item-title">业务类型</div>
+        <div class="order-dialog-content-item-wrapper">
+          <div class="order-dialog-content-item-wrapper-serviceType">
+            <ul>
+              <li class="current crbt">
+                <p class="label-title">订购彩铃</p>
+                <div class="ipt-box"><input type="text" disabled="disabled" value="17828083517"><a
+                    href="/v3/music/service/crbt" target="_blank" class="open-crbt">开通彩铃功能</a></div>
+                <p class="tips">您的手机号码未开通彩铃功能，不能订购、赠送彩铃</p>
+              </li>
+              <li class="send">
+                <p class="label-title"> 赠送他人</p>
+                <div class="ipt-box"><input type="text" placeholder="请输入中国移动手机号码"
+                    onkeyup="this.value=this.value.replace(/[^1-9]$/,'')" maxlength="11" value="17828083517"><span
+                    class="icon-right"></span></div>
+                <p class="tips">请输入11位中国移动手机号码</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="order-dialog-content-item">
+        <div class="order-dialog-content-item-title">支付方式</div>
+        <div class="order-dialog-content-item-wrapper">
+          <div class="order-dialog-content-item-wrapper-payType">
+            <ul>
+              <li class="current">移动话费支付<br>（仅支持中国移动手机号码）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="order-dialog-content-item">
+        <div class="order-dialog-content-item-title">
+          应支付金额<i>￥</i><span>20</span><small>您已开通彩铃包月业务，正在享受彩铃包月相关权益及服务</small></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="vip-dialog-item">
+    <div class="vip-dialog-item">
+      <div class="vip-dialog-content">
+        <div class="vip-dialog-title">咪咕音乐白金会员权益开通</div>
+        <div class="vip-dialog-desc">
+          <p class="vip-desc-title">业务说明：</p>
+          <p>1、话费支付方式仅支持中国移动号码，其他运营商电话号码选择话费支付无法开通，请选择其他支付方式</p>
+          <p>2、话费支付仅支持连续包月模式，订购后长期有效，每月自动扣费，开通后如需退订，请致电10086</p>
+        </div>
+        <div class="vip-dialog-section">
+          <div class="vip-section-title">支付方式</div>
+          <div class="vip-pay-type">
+            <ul class="J-pay-type">
+              <li class="current" data-paytype="00">移动话费支付（仅支持中国移动手机号码）</li>
+              <li data-paytype="01">第三方应用支付（咪咕币、支付宝、和包）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vip-dialog-section">
+          <div class="vip-section-title">开通时长</div>
+          <div class="vip-open-length">
+            <ul id="J-huafei-length">
+              <li class="current"
+                data-info="{&quot;returnCode&quot;:&quot;100000&quot;,&quot;returnDesc&quot;:&quot;fail&quot;,&quot;status&quot;:0,&quot;bizCode&quot;:null,&quot;bizType&quot;:null,&quot;desc&quot;:null,&quot;hold1&quot;:null,&quot;hold2&quot;:null,&quot;offReason&quot;:null,&quot;originalPrice&quot;:null,&quot;payType&quot;:null,&quot;resource&quot;:null,&quot;salePrice&quot;:null}">
+                <span class="open-length-item">连续包月</span>
+                <p class="vip-price-item"> <span class="sale-price"><i>￥</i>NaN</span></p>
+              </li>
+            </ul>
+          </div>
+          <div class="vip-open-length hide">
+            <ul id="J-third-length">
+              <li class="current" data-amount="1"> <span class="open-length-item"> 1
+                  个月</span>
+                <p class="vip-price-item"> <span class="sale-price"><i>￥</i>6</span><s class="origin-price"> ￥
+                    10</s></p>
+              </li>
+              <li data-amount="6"> <span class="open-length-item"> 6
+                  个月</span>
+                <p class="vip-price-item"> <span class="sale-price"><i>￥</i>30</span><s class="origin-price"> ￥
+                    60</s></p>
+              </li>
+              <li data-amount="12"> <span class="open-length-item"> 12
+                  个月</span>
+                <p class="vip-price-item"> <span class="sale-price"><i>￥</i>50</span><s class="origin-price"> ￥
+                    120</s></p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="vip-dialog-protocol"><span class="icon-checkbox checkbox" id="J-checkbox"> </span>我已阅读并同意<a
+          href="/v3/common/terms/1" target="_blank">《咪咕音乐会员服务协议》</a></div>
+    </div>
+    <div class="vip-dialog-item hide">
+      <div class="vip-dialog-content">
+        <div class="vip-dialog-title">咪咕音乐畅听包权益开通</div>
+        <div class="vip-dialog-desc">
+          <p class="vip-desc-title">业务说明：</p>
+          <p>1、话费支付方式仅支持中国移动号码，其他运营商电话号码选择话费支付无法开通，请选择其他支付方式 </p>
+          <p>2、畅听包可多次购买，每个畅听包激活后24小时内可试听无限量歌曲。畅听包购买30天后将失效</p>
+        </div>
+        <div class="vip-dialog-section">
+          <div class="vip-section-title">支付方式</div>
+          <div class="vip-pay-type">
+            <ul class="J-pay-type">
+              <li class="current" data-paytype="00">移动话费支付（仅支持中国移动手机号码）</li>
+              <li data-paytype="01">第三方应用支付（咪咕币、支付宝、和包）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vip-dialog-section">
+          <div class="vip-section-title">购买数量</div>
+          <div class="chang-ting-bao">
+            <ul id="J-ctb">
+              <li class="current"> <i>￥</i><span>1</span>畅听包*1</li>
+              <li> <i>￥</i><span>2</span><s class="origin-price">￥5</s>畅听包*5</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

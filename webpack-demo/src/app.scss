@@ -1,0 +1,115 @@
+$font-stack: Helvetica,
+sans-serif;
+$primary-color:#f0f;
+
+// 单行文本省略号截断
+@mixin ellipsis-single {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// 多行文本省略号截断
+@mixin ellipsis-multiple {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+body {
+  font: 400% $font-stack;
+  color: $primary-color;
+  background-color: #999999;
+}
+
+// 盒子模型
+.container {
+  color: #999999;
+  font-size: 18px;
+  text-align: center;
+  line-height: 300px;
+  width: 300px;
+  height: 300px;
+  padding: 50px;
+  border: 5px solid $primary-color;
+  margin: 10px;
+}
+
+.content-box {
+  background-color: #fff;
+  box-sizing: content-box;
+  transition: all 1s linear;
+
+  &:hover {
+    transform: rotate(180deg) scale(0.5);
+    border-radius: 300px;
+  }
+}
+
+.border-box {
+  background-color: #000;
+  box-sizing: border-box;
+}
+
+// 省略号
+.demo-ellipsis {
+  width: 500px;
+}
+
+.ellipsis-single {
+  @include ellipsis-single;
+}
+
+.ellipsis-multiple {
+  @include ellipsis-multiple;
+}
+
+// 动画
+
+@keyframes loading {
+  0% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(90deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: rotate(270deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  animation: loading 1s linear infinite;
+  border-radius: 300px;
+}
+
+// 三角形
+.arrow {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  border: 1px solid $primary-color;
+
+  &:before {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -20px;
+    right: 0;
+    content: '';
+    border: 10px solid transparent;
+    border-bottom-color: $primary-color;
+  }
+}

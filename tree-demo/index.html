@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>将list转为树节点的数组</title>
+</head>
+
+<body>
+  <script>
+    const list = [{
+        "id": "3a34dcb225d04719ad896d6c9b3b817f",
+        "pid": "0",
+        "name": "平台",
+        "sort": 0,
+        "code": null
+      },
+      {
+        "id": "703d2250bbba4683b5d3ff3738ccc139",
+        "pid": "0",
+        "name": "统计",
+        "sort": 0,
+        "code": null
+      },
+      {
+        "id": "88515a2a7fc7464c93f2741d83ffdc30",
+        "pid": "0",
+        "name": "回收管理",
+        "sort": 0,
+        "code": null
+      },
+      {
+        "id": "54fe019b1a3e4de4907e6145578b0a68",
+        "pid": "0",
+        "name": "上门回收",
+        "sort": 0,
+        "code": null
+      },
+      {
+        "id": "c5c21880df834560be4a78413e6d84cf",
+        "pid": "0",
+        "name": "站点回收",
+        "sort": 0,
+        "code": null
+      },
+      {
+        "id": "d49f7352bb094178913f2beb1955c268",
+        "pid": "0",
+        "name": "用户管理",
+        "sort": 0,
+        "code": null
+      },
+      {
+        "id": "b93899e5cd4c488bb2b6394d919b8c21",
+        "pid": "0",
+        "name": "活动管理",
+        "sort": 0,
+        "code": null
+      },
+      {
+        "id": "4046eab75edc415f85fb287c92c2e6cc",
+        "pid": "3a34dcb225d04719ad896d6c9b3b817f",
+        "name": "运营管理",
+        "sort": 0,
+        "code": null
+      },
+      {
+        "id": "0eed29948c824369b429d6d1b4c2551a",
+        "pid": "3a34dcb225d04719ad896d6c9b3b817f",
+        "name": "商品管理",
+        "sort": 0,
+        "code": "PLT_GOODS_MGR"
+      },
+      {
+        "id": "7d64395ac62d4075a986815765e9cebc",
+        "pid": "3a34dcb225d04719ad896d6c9b3b817f",
+        "name": "小区管理",
+        "sort": 0,
+        "code": "COMMUNITY_MGR"
+      },
+      {
+        "id": "dec23fb9168b47079342f7150104ccb5",
+        "pid": "3a34dcb225d04719ad896d6c9b3b817f",
+        "name": "系统管理",
+        "sort": 0,
+        "code": "SYSTEM_MGR"
+      },
+      {
+        "id": "63edfad5d2b64beba743deba519baa12",
+        "pid": "3a34dcb225d04719ad896d6c9b3b817f",
+        "name": "项目管理",
+        "sort": 0,
+        "code": "PROJECT_MGR"
+      },
+      {
+        "id": "e8db788a95c242feba4b82eb2caee3cb",
+        "pid": "3a34dcb225d04719ad896d6c9b3b817f",
+        "name": "站点管理",
+        "sort": 0,
+        "code": "SITE_MGR"
+      },
+      {
+        "id": "76d38afc9861409eb99d4ce74617ea8e",
+        "pid": "3a34dcb225d04719ad896d6c9b3b817f",
+        "name": "提现管理",
+        "sort": 0,
+        "code": "WITHDRAW_MGR"
+      },
+      {
+        "id": "a07d087667164a3db10c591376f2f573",
+        "pid": "703d2250bbba4683b5d3ff3738ccc139",
+        "name": "回收统计",
+        "sort": 0,
+        "code": "RECYCLE_STAT"
+      },
+      {
+        "id": "860da636156748c084cfc266b3d75702",
+        "pid": "703d2250bbba4683b5d3ff3738ccc139",
+        "name": "居民统计",
+        "sort": 0,
+        "code": "RESIDENT_STAT"
+      },
+      {
+        "id": "ec4ec20b751943abb7fe86dd6b2ae162",
+        "pid": "703d2250bbba4683b5d3ff3738ccc139",
+        "name": "兑换统计",
+        "sort": 0,
+        "code": "EXCHANGE_STAT"
+      },
+      {
+        "id": "90f0c97622624c3ea1af744de6ae92d2",
+        "pid": "703d2250bbba4683b5d3ff3738ccc139",
+        "name": "站点回收统计",
+        "sort": 0,
+        "code": "RECYCLE_SITE_STAT"
+      },
+      {
+        "id": "cfe3e12dd4634840886e2375f0ee3871",
+        "pid": "88515a2a7fc7464c93f2741d83ffdc30",
+        "name": "巡检",
+        "sort": 0,
+        "code": "INSPECT"
+      },
+      {
+        "id": "e2d1c36e67e74b33aec708bb8a35db62",
+        "pid": "88515a2a7fc7464c93f2741d83ffdc30",
+        "name": "普通回收",
+        "sort": 0,
+        "code": "NORMAL_RECYCLE"
+      },
+      {
+        "id": "9a5b0fb649d944fdbb0470c30c5be980",
+        "pid": "88515a2a7fc7464c93f2741d83ffdc30",
+        "name": "商品管理",
+        "sort": 0,
+        "code": "GOODS_MGR"
+      },
+      {
+        "id": "769c1f6520be490cb06a6f008094bdb6",
+        "pid": "88515a2a7fc7464c93f2741d83ffdc30",
+        "name": "二维码管理",
+        "sort": 0,
+        "code": "QRCODE_MGR"
+      },
+      {
+        "id": "8935675bd56745969099d4bb4fcbadfe",
+        "pid": "88515a2a7fc7464c93f2741d83ffdc30",
+        "name": "资源管理",
+        "sort": 0,
+        "code": "RESOURCE_MGR"
+      },
+      {
+        "id": "2218fdc329a84dd295155d74f0441eb7",
+        "pid": "54fe019b1a3e4de4907e6145578b0a68",
+        "name": "直营管家",
+        "sort": 0,
+        "code": "RECYCLE_VISIT_DIRECT"
+      },
+      {
+        "id": "4aa6d265787d4fb78a9419f37b2db0b7",
+        "pid": "54fe019b1a3e4de4907e6145578b0a68",
+        "name": "加盟管家",
+        "sort": 0,
+        "code": "RECYCLE_VISIT_JOIN"
+      },
+      {
+        "id": "93ec35d1ea81459e86791dacefa9aaf8",
+        "pid": "c5c21880df834560be4a78413e6d84cf",
+        "name": "回收订单",
+        "sort": 0,
+        "code": "RECYCLE_SITE_ORDER"
+      },
+      {
+        "id": "cb625bb53cc34b668f9d2dacdb78f926",
+        "pid": "c5c21880df834560be4a78413e6d84cf",
+        "name": "回收入库",
+        "sort": 0,
+        "code": "RECYCLE_SITE_INSTOCK"
+      },
+      {
+        "id": "db8cf08fdbc04cfa9183aa5bd41e1d21",
+        "pid": "c5c21880df834560be4a78413e6d84cf",
+        "name": "回收出库",
+        "sort": 0,
+        "code": "RECYCLE_SITE_OUTSTOCK"
+      },
+      {
+        "id": "d0afcd629184414db19ef4dba32cc609",
+        "pid": "c5c21880df834560be4a78413e6d84cf",
+        "name": "库存管理",
+        "sort": 0,
+        "code": "RECYCLE_SITE_STOCK"
+      },
+      {
+        "id": "b803b74ba64b4659ae4245917d55d2c9",
+        "pid": "d49f7352bb094178913f2beb1955c268",
+        "name": "用户信息",
+        "sort": 0,
+        "code": "CUSTOMER_INFO"
+      },
+      {
+        "id": "ff681afb510242a09dcbdaca569bbe2e",
+        "pid": "d49f7352bb094178913f2beb1955c268",
+        "name": "员工信息",
+        "sort": 0,
+        "code": "STAFF_INFO"
+      },
+      {
+        "id": "efe0bb27e64143ce814633c54e71c504",
+        "pid": "b93899e5cd4c488bb2b6394d919b8c21",
+        "name": "专场回收活动",
+        "sort": 0,
+        "code": "SPECIAL_CAMPAIGN"
+      }
+    ]
+
+    // 将一维数组转换为树形结构的数组
+    function listToTree(data) {
+      // 删除所有 children,以防止多次调用
+      data.forEach(function(item) {
+        delete item.children;
+      });
+      // 将数据存储为 以 id 为 KEY 的 map 索引数据列
+      const map = {};
+      data.forEach(function(item) {
+        map[item.id] = item;
+      });
+      const val = [];
+      data.forEach(function(item) {
+        // 以当前遍历项，的pid,去map对象中找到索引的id
+        const parent = map[item.pid];
+        // 如果找到索引，那么说明此项不在顶级当中,那么需要把此项添加到，他对应的父级中
+        if (parent) {
+          (parent.children || (parent.children = [])).push(item);
+        } else {
+          // 如果没有在map中找到对应的索引ID,那么直接把当前的item添加到 val结果集中，作为顶级
+          val.push(item);
+        }
+      });
+      return val;
+    }
+    const result = listToTree(list);
+    console.log(result);
+
+    const list2tree1 = (list, pid) => {
+      return list.filter(item => {
+        if (item.pid === pid) {
+          item.children = list2tree1(list, item.id);
+          return true
+        }
+        return false
+      })
+    }
+    const result1 = list2tree1(list, '0')
+    console.log(result1);
+
+    const list2tree4 = (list, pid) => {
+      let menuObj = {};
+      list.forEach(item => { 
+        item.children = []
+        menuObj[item.id] = item
+      });
+
+      return list.filter(item => {
+        if (item.pid !== pid) {
+          menuObj[item.pid].children.push(item);
+            return false
+        }
+        return true
+      })
+    }
+
+    const result4 = list2tree4(list, '0')
+    console.log(result4);
+  </script>
+</body>
+
+</html>

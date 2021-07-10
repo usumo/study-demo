@@ -1,0 +1,414 @@
+ <html>
+
+ <head>
+   <title>二维排序表格</title>
+   <style type="text/css">
+     * {
+       font-family: Tahoma, Arial, Serif;
+       font-size: 14;
+     }
+
+     body {
+       text-align: center;
+       min-width: 760px;
+     }
+
+     #main {
+       width: 720px;
+       margin: 0 auto;
+       text-align: left;
+     }
+
+     p {
+       border-bottom: dotted 1px #e63;
+       font-size: 24px;
+       font-family: Arial;
+       font-weight: bold;
+     }
+
+     /* 设置表格样式 */
+     table {
+       text-align: center;
+       border: solid 1px #4682b4;
+       width: 80%;
+       background-color: #4682b4;
+     }
+
+     th {
+       background-color: #6495ed;
+       cursor: pointer;
+       color: White;
+       height: 30px;
+     }
+
+     /* 配上单元格样式以后，表格呈现出细线的边框 */
+     td {
+       background-color: #fff;
+       padding: 4px;
+     }
+
+     /* 深蓝色（鼠标经过） */
+     .activecol {
+       background-color: #005eae;
+     }
+   </style>
+   <script type="text/javascript">
+     //------------以下是对二维数组的初始化与显示操作---------- 
+     // 记录二维数组 
+     var twoArr = new Array(5);
+     // 初始化二维数组 
+     function initTwoArr() {
+       for (var i = 0; i < twoArr.length; i++) {
+         twoArr[i] = new Array(6);
+         for (var j = 0; j < 6; j++) {
+           twoArr[i][j] = getRandom();
+         }
+       }
+       console.log(twoArr);
+       showTwoArrOnTable();
+     }
+     // 得到0-100内的随机数 
+     function getRandom() {
+       var result = Math.round(Math.random() * 100 - 1);
+       return result;
+     }
+     // 把二维表显示在table中 
+     function showTwoArrOnTable() {
+       if (twoArr == null || twoArr.length < 1) {
+         alert("数组初始化失败!");
+         return;
+       }
+       // 设置td的数值 
+       var allTd = document.getElementById("tb").getElementsByTagName("td");
+       var tdIndex = 0;
+       for (var i = 0; i < twoArr.length; i++) {
+         // 为每个单元格设置id,格式 1-2 与数组的下标对应的 
+         var idValue;
+         for (var j = 0; j < twoArr[i].length; j++) {
+           idValue = i.toString() + "-" + j.toString();
+           allTd[tdIndex].id = idValue;
+           allTd[tdIndex].innerHTML = twoArr[i][j];
+           tdIndex++;
+         }
+       }
+     }
+     //------------以下是对table的操作---------- 
+     // 记录当前列(数字型)与当前的排序顺序(布尔型) 
+     var currentCol;
+     var currentReverse;
+     // 根据(col-列索引值)排序 
+     function sortColumn(col) {
+       // 判断是否要对数组倒序 
+       var doReverse;
+       // 如果再次单击当前列，则设置逆序的标志，并记录排序的方式(正序/逆序) 
+       if (col == currentCol) {
+         doReverse = true;
+         currentReverse = !currentReverse;
+       } else {
+         currentReverse = false;
+       }
+       // 记录当前排序的字段 
+       currentCol = col;
+       // 把table的所有行放入数组中 
+       var tb = document.getElementById("tb");
+       var tbody = tb.rows[1].parentNode;
+       var allTr = new Array();
+       for (var i = 1; i < tb.rows.length; i++) {
+         allTr.push(tb.rows[i]);
+       }
+       if (doReverse) {
+         allTr.reverse();
+       } else {
+         allTr.sort(createComp(col));
+       }
+       // 把排好序的行集合加入到table中 
+       var frag = document.createDocumentFragment();
+       for (var i = 0; i < allTr.length; i++) {
+         frag.appendChild(allTr[i]);
+       }
+       tbody.appendChild(frag);
+     }
+     // 根据(col-列索引值)返回一个排序规则 
+     function createComp(col) {
+       // 比较函数(正序) 
+       var compFunc = function (trA, trB) {
+         // 取出要比较的值 
+         var valA = trA.cells[col].firstChild.nodeValue.trim();
+         var valB = trB.cells[col].firstChild.nodeValue.trim()
+         return comp(valA, valB);
+       };
+       return compFunc;
+     }
+     // 对string对象进行扩展，去除字符串两端的空格 
+     String.prototype.trim = function () {
+       var reg = /^\s+|\s+$/g;
+       return this.replace(reg, "");
+     }
+     // 默认比较方式(升序) 
+     function comp(a, b) {
+       a = parseInt(a);
+       b = parseInt(b);
+       return (a < b) ? -1 : ((a > b) ? 1 : 0);
+     }
+     var desc = false; // 默认为升序 
+     // 根据传入的l列排序table 
+     function sortRow(rowTh) {
+       // 找出rowIndex; 
+       var rowIndex;
+       var tbody = document.getElementById("tb").childNodes[1];
+       var allTr = tbody.childNodes;
+       for (var i = 0; i < allTr.length; i++) {
+         if (rowTh == allTr[i].firstChild) {
+           rowIndex = i;
+           break;
+         }
+       }
+       // 对数组进行排序，再填充到table 
+       arrRowSortFunc(rowIndex, desc);
+       desc = !desc;
+       showTwoArrOnTable();
+     }
+     // 对twoArr进行分组冒泡排序 
+     function arrRowSortFunc(rowIndex, isDesc) {
+       var row = twoArr[rowIndex];
+       for (var i = 0; i < row.length; i++) {
+         for (var j = 0; j < row.length - i - 1; j++) {
+           if (isDesc) {
+             // 如果是逆序 
+             if (row[j] < row[j + 1]) {
+               // 交换当前数组的同时要交换对应列的其他数据 
+               var tmp = row[j];
+               row[j] = row[j + 1];
+               row[j + 1] = tmp;
+               for (var m = 0; m < twoArr.length; m++) {
+                 if (m != rowIndex) {
+                   var tmp2 = twoArr[m][j];
+                   twoArr[m][j] = twoArr[m][j + 1];
+                   twoArr[m][j + 1] = tmp2;
+                 }
+               }
+             }
+           } else {
+             // 升序 
+             if (row[j] > row[j + 1]) {
+               // 交换当前数组的同时要交换对应列的其他数据 
+               var tmp = row[j];
+               row[j] = row[j + 1];
+               row[j + 1] = tmp;
+               for (var m = 0; m < twoArr.length; m++) {
+                 if (m != rowIndex) {
+                   var tmp2 = twoArr[m][j];
+                   twoArr[m][j] = twoArr[m][j + 1];
+                   twoArr[m][j + 1] = tmp2;
+                 }
+               }
+             }
+           }
+         }
+       }
+     }
+     // 设置鼠标经过表头样式 
+     function setActiveCol(activeCol) {
+       activeCol.className = "activecol";
+     }
+
+     function setLoseFocusCol(col) {
+       col.className = "";
+     }
+     // 当鼠标单击cell单元格时，把当前单元格设置为input输入框 
+     function inputValue(cell) {
+       var oldValue = cell.innerHTML.trim();
+       // 如果已经双击过了，则不做任何动作 
+       var reg = /\<input/gi;
+       if (reg.test(oldValue))
+         return;
+       // 否则的话，则改为输入框 
+       var input = "<input type='text' style='width=50px;' value='" + oldValue + "' onblur='saveChange(this," + oldValue + ")' " + " />";
+       cell.innerHTML = input;
+       // 把光标移到input内 
+       cell.firstChild.focus();
+     }
+     // 保存改变的值 
+     function saveChange(input, voldValue) {
+       // 记录输入框的值 
+       var newValue = input.value;
+       if (newValue == "" || isNaN(newValue)) {
+         // 如果输入的值不是数字或者为空，则还原为原始值 
+         newValue = voldValue;
+       }
+       // 处理单元格id，则可以对应数组下标 
+       var arrIndex = input.parentNode.id;
+       var reg = /-/;
+       var arrIndexAB = arrIndex.split(reg);
+       var arrIndexA = arrIndexAB[0];
+       var arrIndexB = arrIndexAB[1];
+       // 更改对应数组的值 
+       twoArr[arrIndexA][arrIndexB] = newValue;
+       // 更改单元格的显示 
+       input.parentNode.innerHTML = newValue;
+     }
+
+     function showMe() {
+       alert("作者：叶志雄");
+     }
+   </script>
+ </head>
+
+ <body onload="initTwoArr()">
+   <div id="main">
+     <p>
+       二维排序表格</p>
+     <table id="tb" border="0" cellpadding="1" cellspacing="1">
+       <thead>
+         <tr>
+           <th>
+              
+           </th>
+           <th onclick="sortColumn(1)" onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)">
+             列1
+           </th>
+           <th onclick="sortColumn(2)" onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)">
+             列2
+           </th>
+           <th onclick="sortColumn(3)" onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)">
+             列3
+           </th>
+           <th onclick="sortColumn(4)" onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)">
+             列4
+           </th>
+           <th onclick="sortColumn(5)" onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)">
+             列5
+           </th>
+           <th onclick="sortColumn(6)" onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)">
+             列6
+           </th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <th onclick="sortRow(this)" onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)">
+             行1
+           </th>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+         </tr>
+         <tr>
+           <th onclick="sortRow(this)" onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)">
+             行2
+           </th>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+         </tr>
+         <tr>
+           <th onclick="sortRow(this)" onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)">
+             行3
+           </th>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+         </tr>
+         <tr>
+           <th onclick="sortRow(this)" onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)">
+             行4
+           </th>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+         </tr>
+         <tr>
+           <th onclick="sortRow(this)" onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)">
+             行5
+           </th>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+           <td onmousemove="setActiveCol(this)" onmouseout="setLoseFocusCol(this)" ondblclick="inputValue(this)">
+              
+           </td>
+         </tr>
+       </tbody>
+     </table>
+     <div style="margin-top: 50px; background-color: #eeedf0; width: 80%; font-size: 12px;">
+       说明：<br>
+       1.排序功能：单击行表头或列表头则进行正序排序；若再次单击，则进行逆序；<br>
+       2.修改功能：双击某个单元格，则可进行输入操作，当输入框失去焦点时，则新数据被保存；<br>
+       3.随机功能：每次刷新页面，表格中的数据都不一样；<br>
+     </div>
+   </div>
+ </body>
+
+ </html>

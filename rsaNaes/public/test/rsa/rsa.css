@@ -1,0 +1,27 @@
+body {
+    padding: 0 20%;
+    background: #222;
+    color: #338559;
+}
+
+hr {
+    border-color: #666;
+}
+
+div {
+    margin: 20px 0;
+    word-break: break-all;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0 10px;
+    line-height: 46px;
+    border: none;
+}
+
+button {
+    width: 100px;
+    height: 30px;
+    margin-right: 10px;
+}
