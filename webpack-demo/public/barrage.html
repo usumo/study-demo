@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>弹幕</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #video-wrapper {
+      width: 1000px;
+      height: 500px;
+      margin: 0 auto;
+      position: relative;
+      background-color: antiquewhite;
+    }
+
+    #video,
+    #canvas {
+      width: 1000px;
+      height: 500px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #canvas {
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="video-wrapper">
+    <video src="https://www.w3school.com.cn/i/movie.ogg" controls loop autoplay id="video"></video>
+    <canvas id="canvas"></canvas>
+  </div>
+  <button id="play">播放</button>
+  <input type="text" class="caption-input-text">
+  <button class="caption-sendButton">发送弹幕</button>
+  <button class="colorItems">选择颜色</button>
+  <input type="checkbox" class="caption-input-ismove">
+  <script src="scripts/manifest.js"></script>
+  <script src="scripts/danmu.js"></script>
+  <script>
+    var video = document.getElementById('video');
+    document.getElementById('play').onclick = function () {
+      video.play();
+    }
+
+    var a = 0;
+
+    var obj1 = {
+      a: 111
+    };
+
+    var obj2 = {
+      a: 222,
+      fn: function () {
+        return this.a;
+      }
+    }
+
+    var obj3 = {
+      a: 333,
+      fn: () => {
+        return this.a
+      }
+    }
+    obj1.fn = obj2.fn;
+    console.log(obj1.fn()); //111 这里this指向变了，变成了obj1
+    console.log(obj2.fn()); //222
+    console.log(obj3.fn()); //333 这里this指向window了，箭头函数的this是指向他的上一级
+  </script>
+</body>
+
+</html>

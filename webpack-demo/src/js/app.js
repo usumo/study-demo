@@ -3,7 +3,7 @@ console.log('app-test');
 console.log('app-test-2');
 console.log('app-test-3');
 
-import './app.scss';
+import '../css/app.scss';
 
 class Person {
   constructor(name, age) {

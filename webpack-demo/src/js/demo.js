@@ -1,3 +1,12 @@
+console.log('demo');
+console.log('demo-test');
+
+import Person from './app.js';
+
+let p = new Person('张三', 20);
+console.log(p.say());
+
+
 console.log(v1);
 var v1 = 100;
 
@@ -18,16 +27,16 @@ function bar() {
 }
 
 
-setTimeout(function() {
+setTimeout(function () {
   console.log('定时器开始啦')
 });
 
-new Promise(function(resolve) {
+new Promise(function (resolve) {
   console.log('马上执行for循环啦');
   for (var i = 0; i < 10000; i++) {
     i == 99 && resolve();
   }
-}).then(function() {
+}).then(function () {
   console.log('执行then函数啦')
 });
 

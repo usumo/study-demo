@@ -5,30 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="styles/app.css">
 </head>
 
 <body>
-  <input type="text" id="input">
+  <div class="content-box container loading">content-box</div>
+  <div class="border-box container">border-box</div>
+  <div class="demo-ellipsis ellipsis-single">这里是文本这里是文本这里是文本这里是文本这里是文本这里是文本这里是文本</div>
+  <div class="demo-ellipsis ellipsis-multiple">这里是文本这里是文本这里是文本这里是文本这里是文本这里是文本这里是文本</div>
+  <div class="arrow"></div>
+  <input type="text" id="ipt">
   <button id="submit">提交</button>
-  <script>
-    const ipt = document.getElementById('input')
-
-    function todo() {
-      console.log(ipt.value);
-    }
-
-    function debounce(fn, delay) {
-      let timer = null
-      return () => {
-        clearTimeout(timer)
-        timer = setTimeout(() => {
-          fn.apply(this, arguments)
-        }, delay)
-      }
-    }
-    ipt.onkeyup = debounce(todo, 500);
-  </script>
-  <!-- <script src="demo.js"></script> -->
 </body>
 
 </html>

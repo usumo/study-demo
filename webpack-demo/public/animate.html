@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS3 动画</title>
+  <link rel="stylesheet" href="./animate.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .box1,
+    .box2,
+    .box3,
+    .box4 {
+      width: 300px;
+      height: 300px;
+      background-color: #e91e63;
+      line-height: 300px;
+      text-align: center;
+      color: #fff;
+      font-size: 30px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -150px;
+      margin-top: -150px;
+    }
+
+    .delay1 {
+      animation-delay: 1s;
+      -webkit-animation-delay: 1s;
+    }
+
+    .delay2 {
+      animation-delay: 2s;
+      -webkit-animation-delay: 2s;
+    }
+
+    .delay3 {
+      animation-delay: 3s;
+      -webkit-animation-delay: 3s;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 动画库链接 -->
+  <!-- https://www.jq22.com/demo/Animate201707101048/ -->
+  <!-- https://www.jq22.com/demo/magic-master-150413221542/ -->
+  <div class="box1 bounceInDown animated infinite">Animate.css</div>
+  <div class="box2 bounceInRight animated infinite">Animate.css</div>
+  <div class="box3 bounceInUp animated infinite">Animate.css</div>
+  <div class="box4 bounceInLeft animated infinite">Animate.css</div>
+</body>
+
+</html>

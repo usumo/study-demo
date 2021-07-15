@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      list-style-type: none;
+    }
+  </style>
+</head>
+<body>
+  <ul id="list"></ul>
+  <script>
+    var li,
+        list = document.getElementById('list');
+    var fragment = document.createDocumentFragment(); // 创建文档片段
+    for(var i=0;i<5;i++) {
+      li = document.createElement('li');
+      li.appendChild(document.createTextNode('item' + i));
+      fragment.appendChild(li);
+    }
+
+    list.appendChild(fragment);
+  </script>
+</body>
+</html>
