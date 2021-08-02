@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>夏日畅行打T3</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body,
+    html {
+      background-color: #fefefe;
+    }
+
+    #container {
+      width: 100%;
+      min-width: 320px;
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    #container img {
+      display: block;
+      width: 100%;
+    }
+
+    #container a.link {
+      display: block;
+      width: 250px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      color: #fff;
+      background-color: #fd3b74;
+      border-radius: 40px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 50px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    #container .rule-btn {
+      color: #fff;
+      font-size: 12px;
+      text-decoration: underline;
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+    }
+
+    .popup-ui {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      display: none;
+      animation-name: popup;
+      animation-duration: 0.35s;
+      animation-timing-function: ease;
+    }
+
+    @keyframes popup {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    #t3-rules {
+      width: 85%;
+      background-color: #fff;
+      margin: 0 auto;
+      box-sizing: border-box;
+      padding: 20px 15px;
+      border-radius: 10px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #t3-rules h2 {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    #t3-rules p {
+      font-size: 12px;
+      line-height: 22px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <img src="https://m.music.migu.cn/migu/fs/media/p/158/489/13802/pubAttachment/20210721/1356200.jpg" alt="T3&MIGU">
+    <a href="" class="link">立即领取</a>
+    <p class="rule-btn" id="J-rules">活动规则</p>
+  </div>
+  <div class="popup-ui hide" id="popup">
+    <div id="t3-rules">
+      <h2>活动规则</h2>
+      <p>1.每位用户至多可领取1次；</p>
+      <p> 2.若为首次注册，T3出行用户，可同时获得新人券礼包；</p>
+      <p>3.使用优惠券下单手机账户需与领取优惠券手机账户一致；</p>
+      <p>4.若无“T3出行”APP，请先下载APP，再使用优惠券；</p>
+      <p>5.优惠券仅限支付时使用，每个订单限用一张优惠券；</p>
+      <p>6.活动有效期为2021年xx月xx日-2021年xx月xx日，领取后7天有效；</p>
+      <p>7.优惠券仅限成都地区使用；</p>
+      <p>8.南京领行科技股份有限公司保留法律范围最终活动的解释权</p>
+    </div>
+  </div>
+  <script>
+    var JRule = document.getElementById('J-rules')
+    var JPopup = document.getElementById('popup')
+    JRule.onclick = function() {
+      JPopup.style.display = 'block'
+    }
+    JPopup.onclick = function(e) {
+      if (e.target.id === 'popup') {
+        this.style.display = 'none'
+      }
+    }
+  </script>
+</body>
+
+</html>
