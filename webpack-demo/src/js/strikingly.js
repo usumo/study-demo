@@ -39,16 +39,14 @@ function callback() {
 
 async function simplePoller(queryFn, callback) {
   const isEnd = await queryFn();
-  if (isEnd) {
-    return callback()
-  } else {
-    clearTimeout(timer);
-    timer = setTimeout(_ => {
-      console.log(`等待了${time/1000}秒`);
-      simplePoller(queryFn, callback);
-      time = time * 1.5;
-    }, time);
-  }
+  if (isEnd) return callback();
+  
+  clearTimeout(timer);
+  timer = setTimeout(_ => {
+    console.log(`等待了${time/1000}秒`);
+    simplePoller(queryFn, callback);
+    time = time * 1.5;
+  }, time);
 }
 
 

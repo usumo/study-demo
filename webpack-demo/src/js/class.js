@@ -1,7 +1,7 @@
 // 设计一个房子对象House，并添加属性rooms：Array<Room>，请自行设计其它必要属性，来实现房间面积计算的功能（请注意Room与House的关系）
 
 class House {
-  constructor(rooms) {
+  constructor({ rooms = [] }) {
     this.rooms = rooms;
   }
 
@@ -14,8 +14,7 @@ class House {
   }
 }
 
-const rooms = [
-  {
+const rooms = [{
     x: 2,
     y: 3
   },
@@ -29,5 +28,5 @@ const rooms = [
   },
 ]
 
-const house = new House(rooms);
+const house = new House({ rooms });
 console.log(`房子的总面积为：${house.totalArea()}`);

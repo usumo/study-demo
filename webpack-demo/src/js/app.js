@@ -3,7 +3,7 @@ console.log('app-test');
 console.log('app-test-2');
 console.log('app-test-3');
 
-import '../css/app.scss';
+// import '../css/app.scss';
 
 class Person {
   constructor(name, age) {
@@ -16,4 +16,7 @@ class Person {
   }
 }
 
-export default Person;
+const halo = new Person('halo', 20);
+console.log(halo.say());
+
+// export default Person;
